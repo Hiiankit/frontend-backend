@@ -5,7 +5,7 @@ const app = express();
 /* 👇 THIS IS THE KEY */
 app.use(express.static("public"));
 
-app.get("/products", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   const response = await fetch("https://dummyjson.com/products");
   const data = await response.json();
   res.json(data);

@@ -1,13 +1,19 @@
-fetch("/products")
+fetch("/api/products")
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
-
     document.getElementById("loader").style.display = "none";
 
-    data.products.forEach((p) => {
-      const div = document.createElement("div");
-      div.innerHTML = `<h3>${p.title}</h3>`;
-      document.getElementById("products").appendChild(div);
+    const container = document.getElementById("products");
+
+    data.products.forEach((product) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${product.thumbnail}" alt="${product.title}" />
+        <h3>${product.title}</h3>
+      `;
+
+      container.appendChild(card);
     });
   });
